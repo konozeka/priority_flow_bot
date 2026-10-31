@@ -25,3 +25,14 @@ def mark_task_done(user_id: int, task_id: int) -> bool:
             task.done = True
             return True
     return False
+
+def get_stats(user_id: int) -> dict:
+    user_tasks = get_user_tasks(user_id)
+
+    total_tasks = len(user_tasks)
+    completed_tasks = sum(1 for task in user_tasks if task.done)
+
+    return {
+        "total": total_tasks,
+        "completed": completed_tasks
+    }
